@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "avatarapp7d27ccbf": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
