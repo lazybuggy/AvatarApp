@@ -1,0 +1,7 @@
+type Quote @model {
+  id: ID!
+  character: String!
+  text: String
+  likes: Int
+  image: String
+}
