@@ -15,7 +15,7 @@ function Authenticator(props) {
       props.setAuthState(nextAuthState);
       props.setUser(authData);
       if(nextAuthState === AuthState.SignedIn && authData ){
-      props.history.push('/');
+      props.history.push('/admin');
       }
     });
   }, []);

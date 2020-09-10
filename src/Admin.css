@@ -1,0 +1,42 @@
+.Admin{
+display: flex;
+height: 100%;
+}
+
+.Form{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.Form input{
+    margin: 10px 0;
+}
+
+.Quotes{
+    flex-grow: 1;
+}
+
+.item{
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item .right{
+display: flex;
+align-items: center;
+}
+
+.image{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    margin: 0 10px;
+}
+
+.character{
+    display: flex;
+    align-items: center;
+}

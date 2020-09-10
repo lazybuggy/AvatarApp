@@ -9,6 +9,7 @@ export const getQuote = /* GraphQL */ `
       text
       likes
       image
+      nation
       createdAt
       updatedAt
     }
@@ -27,6 +28,7 @@ export const listQuotes = /* GraphQL */ `
         text
         likes
         image
+        nation
         createdAt
         updatedAt
       }

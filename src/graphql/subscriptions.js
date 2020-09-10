@@ -9,6 +9,7 @@ export const onCreateQuote = /* GraphQL */ `
       text
       likes
       image
+      nation
       createdAt
       updatedAt
     }
@@ -22,6 +23,7 @@ export const onUpdateQuote = /* GraphQL */ `
       text
       likes
       image
+      nation
       createdAt
       updatedAt
     }
@@ -35,6 +37,7 @@ export const onDeleteQuote = /* GraphQL */ `
       text
       likes
       image
+      nation
       createdAt
       updatedAt
     }

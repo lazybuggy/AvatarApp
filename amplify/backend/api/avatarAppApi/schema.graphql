@@ -4,4 +4,5 @@ type Quote @model {
   text: String
   likes: Int
   image: String
+  nation: String
 }

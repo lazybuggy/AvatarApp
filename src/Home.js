@@ -2,77 +2,78 @@ import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-import { listQuotes } from "./graphql/queries";
-import {
-  createQuote as createQuoteMutation,
-  deleteQuote as deleteQuoateMutation,
-} from "./graphql/mutations";
+// import { listQuotes } from "./graphql/queries";
+// import {
+//   createQuote as createQuoteMutation,
+//   deleteQuote as deleteQuoateMutation,
+// } from "./graphql/mutations";
 import { API, Storage } from "aws-amplify";
 
-const initalFormState = { character: "", text: "", likes: 0 };
+// const initalFormState = { character: "", text: "", likes: 0 };
 
-function Home() {
-  const [quotes, setQuotes] = useState([]);
-  const [formData, setFormData] = useState(initalFormState);
+function Home(props) {
+    const {quotes} = props;
+//   const [quotes, setQuotes] = useState([]);
+//   const [formData, setFormData] = useState(initalFormState);
 
-  useEffect(() => {
-    fetchQuotes();
-  }, []);
+//   useEffect(() => {
+//     fetchQuotes();
+//   }, []);
 
-  async function fetchQuotes() {
-    const apiData = await API.graphql({ query: listQuotes });
-    const quotesFromAPI = apiData.data.listQuotes.items;
-    await Promise.all(
-      quotesFromAPI.map(async (quote) => {
-        if (quote.image) {
-          const image = await Storage.get(quote.image);
-          quote.image = image;
-        }
-        return quote;
-      })
-    );
-    setQuotes(quotesFromAPI);
-    // setQuotes(apiData.data.listQuotes.items);
-  }
+//   async function fetchQuotes() {
+//     const apiData = await API.graphql({ query: listQuotes });
+//     const quotesFromAPI = apiData.data.listQuotes.items;
+//     await Promise.all(
+//       quotesFromAPI.map(async (quote) => {
+//         if (quote.image) {
+//           const image = await Storage.get(quote.image);
+//           quote.image = image;
+//         }
+//         return quote;
+//       })
+//     );
+//     setQuotes(quotesFromAPI);
+//     // setQuotes(apiData.data.listQuotes.items);
+//   }
 
-  async function createQuote() {
-    if (!formData.character || !formData.text) {
-      return;
-    }
-    await API.graphql({
-      query: createQuoteMutation,
-      variables: { input: formData },
-    });
-    if (formData.image) {
-      const image = await Storage.get(formData.image);
-      formData.image = image;
-    }
-    setQuotes([...quotes, formData]);
-    setFormData(initalFormState);
-  }
+//   async function createQuote() {
+//     if (!formData.character || !formData.text) {
+//       return;
+//     }
+//     await API.graphql({
+//       query: createQuoteMutation,
+//       variables: { input: formData },
+//     });
+//     if (formData.image) {
+//       const image = await Storage.get(formData.image);
+//       formData.image = image;
+//     }
+//     setQuotes([...quotes, formData]);
+//     setFormData(initalFormState);
+//   }
 
-  async function deleteQuote({ id }) {
-    const newQuotesArray = quotes.filter(quote=> quote.id !== id);
-    setQuotes(newQuotesArray);
-    await API.graphql({
-      query: deleteQuoateMutation,
-      variables: { input: { id } },
-    });
-  }
+//   async function deleteQuote({ id }) {
+//     const newQuotesArray = quotes.filter(quote=> quote.id !== id);
+//     setQuotes(newQuotesArray);
+//     await API.graphql({
+//       query: deleteQuoateMutation,
+//       variables: { input: { id } },
+//     });
+//   }
 
-  async function onChange(e) {
-    if (!e.target.files[0]) {
-      return;
-    }
-    const file = e.target.files[0];
-    setFormData({ ...formData, image: file.name });
-    await Storage.put(file.name, file);
-    fetchQuotes();
-  }
+//   async function onChange(e) {
+//     if (!e.target.files[0]) {
+//       return;
+//     }
+//     const file = e.target.files[0];
+//     setFormData({ ...formData, image: file.name });
+//     await Storage.put(file.name, file);
+//     fetchQuotes();
+//   }
 
   return (
     <div className="App">
-      <input
+      {/* <input
         onChange={(e) =>
           setFormData({ ...formData, character: e.target.value })
         }
@@ -85,7 +86,7 @@ function Home() {
         value={formData.text}
       />
       <input type="file" onChange={onChange} />
-      <button onClick={createQuote}>Add New Quote</button>
+      <button onClick={createQuote}>Add New Quote</button> */}
 
       <div>
         {quotes.map((quote) => (
@@ -94,7 +95,6 @@ function Home() {
             <h4>{quote.character}</h4>
             <h6>{quote.likes}</h6>
             {quote.image && <img src={quote.image} />}
-            <button onClick={() => deleteQuote(quote)}>Delete Quote</button>
           </div>
         ))}
       </div>
