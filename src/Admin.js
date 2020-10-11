@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
-import "./Admin.css";
+import React, { useState, useEffect } from "react";import "./Admin.css";
 
-import {
-  AmplifyGreetings,
-  AmplifyAuthenticator,
-  AmplifySignOut,
-} from "@aws-amplify/ui-react";
-import { listQuotes } from "./graphql/queries";
+// import {
+//   AmplifyGreetings,
+//   AmplifyAuthenticator,
+//   AmplifySignOut,
+// } from "@aws-amplify/ui-react";
+// import { listQuotes } from "./graphql/queries";
 import {
   createQuote as createQuoteMutation,
   deleteQuote as deleteQuoateMutation,
 } from "./graphql/mutations";
-import { API, Storage, Auth } from "aws-amplify";
-import Authenticator from "./Authenticator";
-import { Route, NavLink, HashRouter } from "react-router-dom";
-import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
+import { API, Storage } from "aws-amplify";
+// import Authenticator from "./Authenticator";
+// import { Route, NavLink, HashRouter } from "react-router-dom";
+import { AuthState } from "@aws-amplify/ui-components";
 
-import Home from "./Home";
+// import Home from "./Home";
 // import { AmplifyAuthenticator, AmplifySignOut,AmplifySignIn } from "@aws-amplify/ui-react";
 
 const initalFormState = { character: "", nation: "", text: "", likes: 0 };
@@ -33,11 +31,11 @@ function Admin(props) {
   //   const [authState, setAuthState] = useState();
   //   const [user, setUser] = useState();
   //   {
-  //     console.log("hmmm..", user);
+      // console.log("hmmm..", quotes);
   //   }
 
   useEffect(() => {
-    if (authState != AuthState.SignedIn && !user) {
+    if (authState !== AuthState.SignedIn && !user) {
       history.push("/");
     }
   }, [user]);
@@ -105,8 +103,10 @@ function Admin(props) {
           <div key={quote.id} className="item">
             <div className="left">
               <h2>{quote.text}</h2>
-              <div className="character"><h4>{quote.character}</h4>
-              <span> -  </span> <h6>{quote.nation}</h6>
+              <div className="character">
+                <h4>{quote.character}</h4>
+                <span className="dash"> - </span> 
+                <h4>{quote.nation}</h4>
               </div>
             </div>
             <div className="right">

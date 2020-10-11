@@ -16,6 +16,7 @@ height: 100%;
 
 .Quotes{
     flex-grow: 1;
+    overflow: scroll;
 }
 
 .item{
@@ -23,6 +24,12 @@ height: 100%;
     display: flex;
     justify-content: space-between;
 }
+
+
+.item .left{
+    max-width: 60%;
+}
+ 
 
 .item .right{
 display: flex;
@@ -39,4 +46,8 @@ align-items: center;
 .character{
     display: flex;
     align-items: center;
+}
+
+.character .dash{
+    margin: 0 10px;
 }

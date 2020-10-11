@@ -1,0 +1,13 @@
+.likesContainer{
+    display: flex;
+    align-items: center;
+}
+
+.likesContainer .likes{
+    margin-right: 20px;
+}
+
+.likesContainer .heartSVG{
+    background: transparent;
+    border: none;
+}
