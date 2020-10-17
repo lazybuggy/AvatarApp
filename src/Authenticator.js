@@ -18,19 +18,20 @@ import config from './aws-exports';
 //     .then(data => console.log(data))
 //     .catch(err => console.log(err));
 
-function Authenticator(props) {
+const Authenticator=(props) =>{
+  const {history,setUser,setAuthState} = props;
   console.log("these are props", props);
   useEffect(() => {
     return onAuthUIStateChange((nextAuthState, authData) => {
-      props.setAuthState(nextAuthState);
-      props.setUser(authData);
+      setAuthState(nextAuthState);
+      setUser(authData);
       if(nextAuthState === AuthState.SignedIn && authData ){
-      props.history.push('/admin');
+      history.push('/admin');
       console.log('wongonbgubi wtfff')
 
       }
     });
-  }, []);
+  }, [history,setAuthState,setUser]);
 
   return (
     <div className="App">

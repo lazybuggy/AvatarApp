@@ -1,46 +1,25 @@
-import React, { useState, useEffect } from "react";import "./Admin.css";
-
-// import {
-//   AmplifyGreetings,
-//   AmplifyAuthenticator,
-//   AmplifySignOut,
-// } from "@aws-amplify/ui-react";
-// import { listQuotes } from "./graphql/queries";
+import React, { useState, useEffect } from "react";
+import "./Admin.css";
 import {
   createQuote as createQuoteMutation,
   deleteQuote as deleteQuoateMutation,
 } from "./graphql/mutations";
 import { API, Storage } from "aws-amplify";
-// import Authenticator from "./Authenticator";
-// import { Route, NavLink, HashRouter } from "react-router-dom";
 import { AuthState } from "@aws-amplify/ui-components";
-
-// import Home from "./Home";
-// import { AmplifyAuthenticator, AmplifySignOut,AmplifySignIn } from "@aws-amplify/ui-react";
 
 const initalFormState = { character: "", nation: "", text: "", likes: 0 };
 
-// useEffect(()=>{
-
-// },[])
-
-function Admin(props) {
+const Admin = (props) => {
   const { user, authState, history, quotes, setQuotes } = props;
   const [formData, setFormData] = useState(initalFormState);
-
-  //   const [authState, setAuthState] = useState();
-  //   const [user, setUser] = useState();
-  //   {
-      // console.log("hmmm..", quotes);
-  //   }
 
   useEffect(() => {
     if (authState !== AuthState.SignedIn && !user) {
       history.push("/");
     }
-  }, [user]);
+  }, [user,history,authState]);
 
-  async function createQuote() {
+  const createQuote = async() => {
     if (!formData.character || !formData.text || !formData.nation) {
       return;
     }
@@ -56,7 +35,7 @@ function Admin(props) {
     setFormData(initalFormState);
   }
 
-  async function deleteQuote({ id }) {
+  const deleteQuote = async({ id }) =>{
     const newQuotesArray = quotes.filter((quote) => quote.id !== id);
     setQuotes(newQuotesArray);
     await API.graphql({
@@ -65,14 +44,13 @@ function Admin(props) {
     });
   }
 
-  async function onChange(e) {
+  const onChange= async(e)=> {
     if (!e.target.files[0]) {
       return;
     }
     const file = e.target.files[0];
     setFormData({ ...formData, image: file.name });
     await Storage.put(file.name, file);
-    // fetchQuotes();
   }
 
   return authState === AuthState.SignedIn && user ? (
@@ -105,13 +83,15 @@ function Admin(props) {
               <h2>{quote.text}</h2>
               <div className="character">
                 <h4>{quote.character}</h4>
-                <span className="dash"> - </span> 
+                <span className="dash"> - </span>
                 <h4>{quote.nation}</h4>
               </div>
             </div>
             <div className="right">
               <h6>{quote.likes}</h6>
-              {quote.image && <img src={quote.image} className="image" />}
+              {quote.image && (
+                <img src={quote.image} className="image" alt={quote.character} />
+              )}
               <button onClick={() => deleteQuote(quote)}>Delete Quote</button>
             </div>
           </div>

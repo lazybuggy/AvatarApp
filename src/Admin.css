@@ -1,53 +1,79 @@
-.Admin{
-display: flex;
-height: 100%;
+.Admin {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 1440px;
+    padding: 60px 0 0;
+    box-sizing: border-box;
+    z-index: 0;
 }
 
-.Form{
+.Form {
     width: 300px;
     display: flex;
     flex-direction: column;
     padding: 20px;
 }
 
-.Form input{
+.Form input {
     margin: 10px 0;
 }
 
-.Quotes{
+.Quotes {
     flex-grow: 1;
     overflow: scroll;
 }
 
-.item{
+.item {
     border-bottom: 1px solid black;
     display: flex;
     justify-content: space-between;
 }
 
 
-.item .left{
+.item .left {
     max-width: 60%;
-}
- 
+} 
 
-.item .right{
+.item .right {
 display: flex;
 align-items: center;
+padding: 0 20px;
 }
 
-.image{
+.image {
     height: 100px;
     width: 100px;
     object-fit: cover;
     margin: 0 10px;
 }
 
-.character{
+.character {
     display: flex;
     align-items: center;
 }
 
-.character .dash{
+.character .dash {
     margin: 0 10px;
+}
+
+.Admin button {
+    padding: 10px;
+    color: white;
+    background: #2E67A0;
+    border: 1px solid #2E67A0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.Admin button:hover {
+    background: #1C3F6E;
+    border: 1px solid #1C3F6E;
+}
+
+@media only screen and (min-width: 1025px){
+    .Admin {
+        padding: 80px 0 0;
+        flex-direction: row;
+    }
 }
